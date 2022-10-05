@@ -1,11 +1,11 @@
 import openpyxl as op
+
 data = ("name", "gender", "date", "date_registration",
         "situation", "email", "cpf")
 
-arquivo_excel = op.Workbook()
+arquivo_excel = op.load_workbook("planilha_clientes.xlsx")
 planilha_clientes = arquivo_excel.active
 planilha_clientes.title = "gastos "
-posicaoLivre = int(planilha_clientes._get_cell(1,9).value)
 add = 1
 
 planilha_clientes["A1"] = data[0]
@@ -16,21 +16,26 @@ planilha_clientes["E1"] = data[4]
 planilha_clientes["F1"] = data[5]
 planilha_clientes["G1"] = data[6]
 
-
 def cadastrar(*dados):
     coluna = "ABCDEFG"
+    posicao = ultimoElememto()
     for x in range(7):
-        planilha_clientes[f"{coluna[x]}{posicaoLivre}"] = dados[x]
+        planilha_clientes[f"{coluna[x]}{posicao}"] = dados[x]
+
+def ultimoElememto():
+    cont = 1
+    for celula in planilha_clientes["A"]:
+        cont += 1
+    return cont;
+
 
 while True:
-    print("posicaoLivre")
     if (add == 1):
-        cadastrar("Gabriel", "Mascu", "07/04/2002", "07/04/2003",
+        cadastrar("Rafel", "Mascu", "07/04/2002", "07/04/2003",
                     "OK", "gbrielti096@gmail.com", "12331232466")
     else:
         break
     add = int(input("deseja continuar ?"))
-    posicaoLivre += 1
 
 
 arquivo_excel.save("planilha_clientes.xlsx")
