@@ -17,7 +17,7 @@ planilha_clientes["F1"] = data[5]
 planilha_clientes["G1"] = data[6]
 
 
-def adcionar(*dados):
+def cadastrar(*dados):
     coluna = "ABCDEFG"
     for x in range(7):
         planilha_clientes[f"{coluna[x]}{posicaoLivre}"] = dados[x]
@@ -25,7 +25,7 @@ def adcionar(*dados):
 while True:
     print("posicaoLivre")
     if (add == 1):
-        adcionar("Gabriel", "Mascu", "07/04/2002", "07/04/2003",
+        cadastrar("Gabriel", "Mascu", "07/04/2002", "07/04/2003",
                     "OK", "gbrielti096@gmail.com", "12331232466")
     else:
         break
